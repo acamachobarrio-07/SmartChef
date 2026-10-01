@@ -4,6 +4,7 @@ package es.safareyes.smartchef.modelos;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Check;
 
 /*La marcamos como tabla*/
 @Entity
@@ -17,6 +18,8 @@ import lombok.*;
 @ToString
 
 public class Usuario {
+
+
     //atributos
     /*declaramos la id y tambien la ponemos como autoincrement*/
     @Id
@@ -24,12 +27,12 @@ public class Usuario {
     @Column(name="id")
     private Short id;
 
-    @Column(name="nombre")
+    @Column(name="nombre", length = 150, nullable=false, unique = true)
     private String nombre;
 
     @Column(name="rol")
     private Integer rol;
 
-    @Column(name="contraseña")
+    @Column(name = "contraseña", length = 50, nullable = true)
     private String contraseña;
 }

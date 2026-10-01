@@ -24,8 +24,11 @@ public class Receta {
     @Column(name="id")
     private Short id;
 
-    @Column(name="nombre")
+    @Column(name="nombre", length = 150, nullable = false, unique = true)
     private String nombre;
+
+    @Column(name="raciones")
+    private Integer raciones;
 
     @Column(name="tiempo")
     private Integer tiempo;
@@ -36,7 +39,7 @@ public class Receta {
     @Column(name="descripcion")
     private String descripcion;
 
-    @Column(name="dificultad")
+    @Column(name="dificultad", length = 300)
     private Integer dificultad;
 
     /*La manytomany la añadimos a una de las clases*/

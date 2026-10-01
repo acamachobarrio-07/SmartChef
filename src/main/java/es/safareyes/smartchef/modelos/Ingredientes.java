@@ -22,11 +22,8 @@ public class Ingredientes {
     @Column(name="id")
     private Short id;
 
-    @Column(name="nombre")
+    @Column(name="nombre", length = 150, nullable = false, unique = true)
     private String nombre;
-
-    @Column(name="tiempo")
-    private Integer tiempo;
 
     @Column(name="tipo_cantidad")
     private Integer tipoCantidad;
