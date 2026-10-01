@@ -9,7 +9,6 @@ import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabas
 
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 
 
 @DataJpaTest
@@ -18,7 +17,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
         @Autowired
         private IRecetaRepository repository;
         @Test
-        void consultarReceta(){
+        void
+        consultarReceta(){
             List<Receta> todos= repository.findAll();
         }
     }

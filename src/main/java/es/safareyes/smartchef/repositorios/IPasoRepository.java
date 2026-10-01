@@ -1,4 +1,8 @@
 package es.safareyes.smartchef.repositorios;
 
-public interface IPasoRepository {
+import es.safareyes.smartchef.modelos.Paso;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IPasoRepository extends JpaRepository<Paso, Integer> {
+
 }
