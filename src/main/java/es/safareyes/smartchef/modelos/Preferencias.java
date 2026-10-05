@@ -5,6 +5,9 @@ package es.safareyes.smartchef.modelos;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*La marcamos como tabla*/
 @Entity
 @Table(name="preferencias")
@@ -26,4 +29,14 @@ public class Preferencias {
 
     @Column(name="tipo")
     private Integer tipo;
+
+    //relacion N:M
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name="usuario_preferencias",
+            joinColumns = @JoinColumn(name = "usuario_preferencias_id_preferencias"),
+            inverseJoinColumns = @JoinColumn(name="usuario_preferencias_id_usuario")
+    )
+    private Set<Preferencias> preferencia = new HashSet<>();
 }
