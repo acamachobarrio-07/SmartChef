@@ -58,4 +58,6 @@ public class Usuario {
     )
 
     private Set<Ingredientes> listaCompra = new HashSet<>();
+
+
 }
