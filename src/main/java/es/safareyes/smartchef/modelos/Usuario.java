@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Check;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*La marcamos como tabla*/
 @Entity
 @Table(name="usuario")
@@ -35,4 +38,24 @@ public class Usuario {
 
     @Column(name = "contraseña", length = 50, nullable = true)
     private String contraseña;
+
+    //N:M usuario_preferencias
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "usuario_preferencias",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_preferencias")
+    )
+
+    private Set<Preferencias> preferencias = new HashSet<>();
+
+    //N:M lista_compra
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "lista_compra",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_ingredientes")
+    )
+
+    private Set<Ingredientes> listaCompra = new HashSet<>();
 }

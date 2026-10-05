@@ -5,6 +5,9 @@ package es.safareyes.smartchef.modelos;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*La marcamos como tabla*/
 @Entity
 @Table(name="receta")
@@ -42,16 +45,10 @@ public class Receta {
     @Column(name="dificultad", length = 300)
     private Integer dificultad;
 
-    /*La manytomany la añadimos a una de las clases*/
+    // N:M coleccion_receta
+    @ManyToMany(mappedBy = "recetas", fetch = FetchType.LAZY)
 
-    //esta parte del join revisarla
-
-    //@ManyToMany(fetch = FetchType.LAZY)
-    //@JoinTable (
-    // name="ingredientes_receta"
-    // joinColums = @id_receta)
-    // InversejoinColums = @id_ingrediente)
-    //private List<Ingredientes> ingrediente;
+    private Set<Coleccion> colecciones = new HashSet<>();
 
 
 }

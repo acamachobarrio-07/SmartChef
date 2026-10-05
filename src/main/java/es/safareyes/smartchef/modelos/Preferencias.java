@@ -30,13 +30,13 @@ public class Preferencias {
     @Column(name="tipo")
     private Integer tipo;
 
-    //relacion N:M
+    // N:M usuario_preferencias
+    @ManyToMany(mappedBy = "preferencias", fetch = FetchType.LAZY)
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name="usuario_preferencias",
-            joinColumns = @JoinColumn(name = "usuario_preferencias_id_preferencias"),
-            inverseJoinColumns = @JoinColumn(name="usuario_preferencias_id_usuario")
-    )
-    private Set<Preferencias> preferencia = new HashSet<>();
+    private Set<Usuario> usuarios = new HashSet<>();
+
+    // N:M alergias
+    @ManyToMany(mappedBy = "preferenciasAlergias", fetch = FetchType.LAZY)
+
+    private Set<Ingredientes> ingredientesAlergias = new HashSet<>();
 }
