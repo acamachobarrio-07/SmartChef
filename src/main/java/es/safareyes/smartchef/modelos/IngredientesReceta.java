@@ -20,7 +20,7 @@ public class IngredientesReceta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Short id;
+    private Integer id;
 
     @Column(name="cantidad")
     private int cantidad;

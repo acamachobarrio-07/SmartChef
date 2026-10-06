@@ -23,7 +23,7 @@ public class Coleccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Short id;
+    private Integer id;
 
     @Column(name="nombre", length = 150, nullable = false, unique = true)
     private String nombre;

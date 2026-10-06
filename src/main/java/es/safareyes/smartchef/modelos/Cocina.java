@@ -23,10 +23,10 @@ public class Cocina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Short id;
+    private Integer id;
 
     @Column(name="tipo")
-    private int tipo;
+    private Integer tipo;
 
     @Column(name="fecha")
     private LocalDate fecha;

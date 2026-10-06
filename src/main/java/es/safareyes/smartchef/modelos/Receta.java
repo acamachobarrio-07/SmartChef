@@ -25,7 +25,7 @@ public class Receta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Short id;
+    private Integer id;
 
     @Column(name="nombre", length = 150, nullable = false, unique = true)
     private String nombre;
@@ -42,7 +42,7 @@ public class Receta {
     @Column(name="descripcion")
     private String descripcion;
 
-    @Column(name="dificultad", length = 300)
+    @Column(name="dificultad")
     private Integer dificultad;
 
     // N:M coleccion_receta

@@ -28,7 +28,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Short id;
+    private Integer id;
 
     @Column(name="nombre", length = 150, nullable=false, unique = true)
     private String nombre;
@@ -36,7 +36,7 @@ public class Usuario {
     @Column(name="rol")
     private Integer rol;
 
-    @Column(name = "contraseña", length = 50, nullable = true)
+    @Column(name = "contraseña", length = 50, nullable = false)
     private String contraseña;
 
     //N:M usuario_preferencias

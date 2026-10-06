@@ -22,7 +22,7 @@ public class Paso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Short id;
+    private Integer id;
 
     @Column(name="descripcion")
     private String descripcion;
@@ -34,7 +34,7 @@ public class Paso {
     /*hay que ponerle el tipo de relación, se pone en ingles, luego hay que añadir por donde une*/
     /*usamos lazy para cuando el usuario consulte el dato concreto*/
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="paso_id_receta")
+    @JoinColumn(name="id_receta")
     private Receta receta;
 
 

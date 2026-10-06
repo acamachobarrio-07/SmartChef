@@ -23,10 +23,10 @@ public class Despensa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Short id;
+    private Integer id;
 
     @Column(name="cantidad")
-    private int cantidad;
+    private Integer cantidad;
 
     @Column(name="caducidad")
     private LocalDate caducidad;
