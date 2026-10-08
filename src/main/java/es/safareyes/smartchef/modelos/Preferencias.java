@@ -38,7 +38,7 @@ public class Preferencias {
     private Set<Usuario> usuarios = new HashSet<>();
 
     // N:M alergias
-    @ManyToMany(mappedBy = "preferenciasAlergias", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "alergias", fetch = FetchType.LAZY)
 
     private Set<Ingredientes> ingredientesAlergias = new HashSet<>();
 }

@@ -52,4 +52,5 @@ public class Ingredientes {
     // N:M lista_compra
     @ManyToMany(mappedBy = "listaCompra", fetch = FetchType.LAZY)
     private Set<Usuario> usuariosListaCompra = new HashSet<>();
+
 }
