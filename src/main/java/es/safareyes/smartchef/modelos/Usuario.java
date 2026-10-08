@@ -4,7 +4,6 @@ package es.safareyes.smartchef.modelos;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Check;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,8 +32,10 @@ public class Usuario {
     @Column(name="nombre", length = 150, nullable=false, unique = true)
     private String nombre;
 
+    //enumerate rol
+    @Enumerated
     @Column(name="rol")
-    private Integer rol;
+    private EUsuarioRol eUsuarioRol;
 
     @Column(name = "contraseña", length = 50, nullable = false)
     private String contraseña;

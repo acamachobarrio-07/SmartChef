@@ -27,8 +27,10 @@ public class Preferencias {
     @Column(name="id")
     private Integer id;
 
+    //enum
+    @Enumerated
     @Column(name="tipo")
-    private Integer tipo;
+    private EPreferenciasTipo ePreferenciasTipo;
 
     // N:M usuario_preferencias
     @ManyToMany(mappedBy = "preferencias", fetch = FetchType.LAZY)

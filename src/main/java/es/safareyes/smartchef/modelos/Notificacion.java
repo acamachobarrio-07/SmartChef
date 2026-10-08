@@ -22,8 +22,10 @@ public class Notificacion {
     @Column(name="id")
     private Integer id;
 
+    //ENUM
+    @Enumerated
     @Column(name="tipo")
-    private Integer tipo;
+    private ENotificacionTipo eNotificacionTipo;
 
     @Column(name="texto")
     private String nombre;

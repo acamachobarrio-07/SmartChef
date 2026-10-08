@@ -42,8 +42,10 @@ public class Receta {
     @Column(name="descripcion")
     private String descripcion;
 
+    //enumerate
+    @Enumerated
     @Column(name="dificultad")
-    private Integer dificultad;
+    private ERecetaDificultad eRecetaDificultad;
 
     // N:M coleccion_receta
     @ManyToMany(mappedBy = "recetas", fetch = FetchType.LAZY)

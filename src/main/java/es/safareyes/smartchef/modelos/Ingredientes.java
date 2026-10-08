@@ -28,8 +28,10 @@ public class Ingredientes {
     @Column(name="nombre", length = 150, nullable = false, unique = true)
     private String nombre;
 
+    //ENUM
+    @Enumerated
     @Column(name="tipo_cantidad")
-    private Integer tipoCantidad;
+    private EIngredientesTipoCantidad eIngredientesTipoCantidad;
 
     @Column(name="calorias")
     private Integer calorias;
