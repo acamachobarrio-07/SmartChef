@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface IRecetaRepository extends JpaRepository<Receta, Integer> {
 
+    //Catálogo con filtros
+
     @Query(value = """
     SELECT r.* FROM receta r
     WHERE (:tiempoMax IS NULL OR r.tiempo <= :tiempoMax)
@@ -20,6 +22,17 @@ public interface IRecetaRepository extends JpaRepository<Receta, Integer> {
     List<Receta> buscarConFiltros(
             @Param("tiempoMax") Integer tiempoMax,
             @Param("dificultadMin") Integer dificultadMin
+    );
+
+    //Detalle receta con ingredientes
+    @Query(value = """
+    SELECT DISTINCT r.* FROM receta r
+    JOIN ingredientes_receta ir ON r.id = ir.id_receta
+    LEFT JOIN paso p ON r.id = p.id_receta
+    WHERE r.id = :idReceta
+    """, nativeQuery = true)
+    List<Receta> obtenerdetalleRecetaconIngredientes(
+            @Param("idReceta") Integer idReceta
     );
 
     //@Query("""

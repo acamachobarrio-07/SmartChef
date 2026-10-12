@@ -1,9 +1,13 @@
 package es.safareyes.smartchef.modelos;
 
+import es.safareyes.smartchef.repositorios.IIngredientesRecetaRepository;
+import es.safareyes.smartchef.repositorios.IIngredientesRepository;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /*La marcamos como tabla*/
