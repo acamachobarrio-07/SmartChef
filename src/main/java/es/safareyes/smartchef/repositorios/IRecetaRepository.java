@@ -1,5 +1,7 @@
 package es.safareyes.smartchef.repositorios;
 
+import es.safareyes.smartchef.dtos.DatosReceta;
+import es.safareyes.smartchef.dtos.InformeRecetas;
 import es.safareyes.smartchef.modelos.Receta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,15 +27,20 @@ public interface IRecetaRepository extends JpaRepository<Receta, Integer> {
     );
 
     //Detalle receta con ingredientes
-    @Query(value = """
-    SELECT DISTINCT r.* FROM receta r
-    JOIN ingredientes_receta ir ON r.id = ir.id_receta
-    LEFT JOIN paso p ON r.id = p.id_receta
+    @Query("""
+    SELECT new es.safareyes.smartchef.dtos.DatosReceta(
+        r.nombre,
+        r.raciones,
+        r.tiempo,
+        r.calorias,
+        r.descripcion,
+        r.eRecetaDificultad
+    )
+    FROM Receta r
     WHERE r.id = :idReceta
-    """, nativeQuery = true)
-    List<Receta> obtenerdetalleRecetaconIngredientes(
-            @Param("idReceta") Integer idReceta
-    );
+    """)
+    List<DatosReceta> obtenerdetalleRecetaconIngredientes(@Param("idReceta") Integer idReceta);
+}
 
     //@Query("""
     //SELECT p FROM Prestamo p
@@ -64,4 +71,4 @@ public interface IRecetaRepository extends JpaRepository<Receta, Integer> {
     * @Query (value = select e.* from especie e join cat_tipo_agua cta on cta.id = e.id_tipo_agua where cta.nombre=:agua, nativeQuery=true)
     * List<Continente> buscarPorAgua(@Param("agua" String nombreAgua)
     * */
-}
+

@@ -10,10 +10,11 @@ import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
 //lombok genera getters, setters, constructor y toString
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"receta"})
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"receta"})
+
 public class Foto {
 
     //atributos

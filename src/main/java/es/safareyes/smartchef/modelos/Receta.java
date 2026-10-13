@@ -1,27 +1,23 @@
 package es.safareyes.smartchef.modelos;
 
-//añadimos etiquetas, se la hacemos a spring boot para declarar algo
-
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-/*La marcamos como tabla*/
 @Entity
 @Table(name="receta")
-//lombok genera getters, setters, constructor y toString
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@EqualsAndHashCode(exclude = {"pasos", "ingredientesReceta", "fotos", "colecciones"})
+@ToString(exclude = {"pasos", "ingredientesReceta", "fotos", "colecciones"})
 public class Receta {
 
-    //atributos
-    /*declaramos la id y tambien la ponemos como autoincrement*/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -42,15 +38,19 @@ public class Receta {
     @Column(name="descripcion")
     private String descripcion;
 
-    //enumerate
-    @Enumerated
+    @Enumerated(EnumType.ORDINAL)
     @Column(name="dificultad")
     private ERecetaDificultad eRecetaDificultad;
 
-    // N:M coleccion_receta
     @ManyToMany(mappedBy = "recetas", fetch = FetchType.LAZY)
-
     private Set<Coleccion> colecciones = new HashSet<>();
 
+    @OneToMany(mappedBy = "receta", fetch = FetchType.LAZY)
+    private List<Paso> pasos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "receta", fetch = FetchType.LAZY)
+    private List<IngredientesReceta> ingredientesReceta = new ArrayList<>();
+
+    @OneToMany(mappedBy = "receta", fetch = FetchType.LAZY)
+    private List<Foto> fotos = new ArrayList<>();
 }

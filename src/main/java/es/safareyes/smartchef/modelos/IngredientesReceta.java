@@ -3,20 +3,16 @@ package es.safareyes.smartchef.modelos;
 import jakarta.persistence.*;
 import lombok.*;
 
-/*La marcamos como tabla*/
 @Entity
-@Table(name="despensa")
-//lombok genera getters, setters, constructor y toString
+@Table(name="ingredientes_receta")
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-
+@EqualsAndHashCode(exclude = {"receta", "ingrediente"})
+@ToString(exclude = {"receta", "ingrediente"})
 public class IngredientesReceta {
-    //atributos
-    /*declaramos la id y tambien la ponemos como autoincrement*/
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -32,5 +28,4 @@ public class IngredientesReceta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_receta", nullable = false)
     private Receta receta;
-
 }

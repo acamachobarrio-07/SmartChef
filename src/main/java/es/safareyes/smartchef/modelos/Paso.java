@@ -12,10 +12,10 @@ import lombok.*;
 //lombok genera getters, setters, constructor y toString
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@EqualsAndHashCode(exclude = {"receta"})
+@ToString(exclude = {"receta"})
 
 public class Paso {
 
