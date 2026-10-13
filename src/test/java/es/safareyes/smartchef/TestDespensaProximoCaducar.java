@@ -1,5 +1,6 @@
 package es.safareyes.smartchef;
 
+import es.safareyes.smartchef.dtos.DatosDespensa;
 import es.safareyes.smartchef.modelos.Despensa;
 import es.safareyes.smartchef.repositorios.IDespensaRepository;
 import org.junit.jupiter.api.Test;
@@ -18,5 +19,5 @@ public class TestDespensaProximoCaducar {
 
     @Test
     void obtenerDespensaPorUsuarioProximosCaducar() {
-        List<Despensa> despensa = repository.obtenerDespensaProximoCaducar(1);    }
+        List<DatosDespensa> despensa = repository.obtenerDespensaProximoCaducar(2);    }
 }

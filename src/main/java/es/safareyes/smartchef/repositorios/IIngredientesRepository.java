@@ -17,9 +17,7 @@ public interface IIngredientesRepository extends JpaRepository<Ingredientes, Int
     WHERE d.id_usuario = :idUsuario
     ORDER BY i.nombre ASC
     """, nativeQuery = true)
-    List<Ingredientes> obtenerIngredientesPorUsuario(
-            @Param("idUsuario") Integer idUsuario
-    );
+    List<Ingredientes> obtenerIngredientesPorUsuario(@Param("idUsuario") Integer idUsuario);
 
 
 }

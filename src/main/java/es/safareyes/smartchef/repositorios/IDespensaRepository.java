@@ -1,5 +1,6 @@
 package es.safareyes.smartchef.repositorios;
 
+import es.safareyes.smartchef.dtos.DatosDespensa;
 import es.safareyes.smartchef.modelos.Despensa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,14 +12,17 @@ public interface IDespensaRepository extends JpaRepository<Despensa, Integer> {
 
     //Mi despensa con los próximos a caducar
 
-    @Query(value = """
-    SELECT d.* FROM despensa d
-    JOIN ingredientes i ON d.id_ingredientes = i.id
-    WHERE d.id_usuario = :idUsuario
-    ORDER BY d.caducidad ASC NULLS LAST
-    """, nativeQuery = true)
-    List<Despensa> obtenerDespensaProximoCaducar(
-            @Param("idUsuario") Integer idUsuario
-    );
-
+    @Query("""
+    SELECT new es.safareyes.smartchef.dtos.DatosDespensa(
+        i.nombre,
+        d.cantidad,
+        d.caducidad
+    )
+    FROM Despensa d
+    JOIN d.ingrediente i
+    WHERE d.usuario.id = :idUsuario
+    ORDER BY d.caducidad ASC
+    """)
+    List<DatosDespensa> obtenerDespensaProximoCaducar(@Param("idUsuario") Integer idUsuario);
 }
+
