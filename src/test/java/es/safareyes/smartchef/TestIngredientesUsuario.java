@@ -1,5 +1,6 @@
 package es.safareyes.smartchef;
 
+import es.safareyes.smartchef.dtos.DatosIngrediente;
 import es.safareyes.smartchef.modelos.Ingredientes;
 import es.safareyes.smartchef.repositorios.IIngredientesRepository;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ public class TestIngredientesUsuario {
 
     @Test
     void obtenerIngredientesPorUsuario() {
-        List<Ingredientes> ingredientes = repository.obtenerIngredientesPorUsuario(1);
+        List<DatosIngrediente> ingredientes = repository.obtenerIngredientesPorUsuario(2);
     }
 
 }

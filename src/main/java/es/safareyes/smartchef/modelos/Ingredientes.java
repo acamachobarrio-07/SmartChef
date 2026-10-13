@@ -16,10 +16,10 @@ import java.util.Set;
 //lombok genera getters, setters, constructor y toString
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@EqualsAndHashCode(exclude = {"alergias", "usuariosListaCompra", "ingredientesReceta", "despensas"})
+@ToString(exclude = {"alergias", "usuariosListaCompra", "ingredientesReceta", "despensas"})
 public class Ingredientes {
 
     //atributos
