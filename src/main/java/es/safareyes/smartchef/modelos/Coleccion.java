@@ -32,7 +32,7 @@ public class Coleccion {
     /*hay que ponerle el tipo de relación, se pone en ingles, luego hay que añadir por donde une*/
     /*usamos lazy para cuando el usuario consulte el dato concreto*/
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="coleccion_id_usuario")
+    @JoinColumn(name="id_usuario")
     private Usuario usuario;
 
     //N:M coleccion_receta

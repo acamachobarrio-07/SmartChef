@@ -26,4 +26,6 @@ public interface IIngredientesRepository extends JpaRepository<Ingredientes, Int
     """)
     List<DatosIngrediente> obtenerIngredientesPorUsuario(@Param("idUsuario") Integer idUsuario);
 
+
+
 }

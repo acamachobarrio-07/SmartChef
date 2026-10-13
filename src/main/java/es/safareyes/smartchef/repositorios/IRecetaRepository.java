@@ -2,6 +2,7 @@ package es.safareyes.smartchef.repositorios;
 
 import es.safareyes.smartchef.dtos.DatosFiltradoReceta;
 import es.safareyes.smartchef.dtos.DatosReceta;
+import es.safareyes.smartchef.dtos.DatosRecetasPopulares;
 import es.safareyes.smartchef.dtos.InformeRecetas;
 import es.safareyes.smartchef.modelos.ERecetaDificultad;
 import es.safareyes.smartchef.modelos.Receta;
@@ -49,6 +50,25 @@ public interface IRecetaRepository extends JpaRepository<Receta, Integer> {
     WHERE r.id = :idReceta
     """)
     List<DatosReceta> obtenerdetalleRecetaconIngredientes(@Param("idReceta") Integer idReceta);
+
+    //top 5 recetas mas cocinadas y mas guardadas
+
+    @Query("""
+    SELECT new es.safareyes.smartchef.dtos.DatosRecetasPopulares(
+        r.nombre,
+        r.eRecetaDificultad,
+        r.tiempo,
+        COUNT(DISTINCT c.id),
+        COUNT(DISTINCT col.id)
+    )
+    FROM Receta r
+    LEFT JOIN Cocina c ON c.receta.id = r.id AND c.usuario.id = :idUsuario
+    LEFT JOIN r.colecciones col
+    WHERE c.id IS NOT NULL OR col.id IS NOT NULL
+    GROUP BY r.id, r.nombre, r.eRecetaDificultad, r.tiempo
+    ORDER BY (COUNT(DISTINCT c.id) + COUNT(DISTINCT col.id)) DESC
+    """)
+    List<DatosRecetasPopulares> findTop5ByUsuario(@Param("idUsuario") Integer idUsuario);
 }
 
     //@Query("""
