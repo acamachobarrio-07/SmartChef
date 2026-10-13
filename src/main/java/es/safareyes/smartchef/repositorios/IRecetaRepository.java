@@ -1,7 +1,9 @@
 package es.safareyes.smartchef.repositorios;
 
+import es.safareyes.smartchef.dtos.DatosFiltradoReceta;
 import es.safareyes.smartchef.dtos.DatosReceta;
 import es.safareyes.smartchef.dtos.InformeRecetas;
+import es.safareyes.smartchef.modelos.ERecetaDificultad;
 import es.safareyes.smartchef.modelos.Receta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,13 +17,20 @@ public interface IRecetaRepository extends JpaRepository<Receta, Integer> {
 
     //Catálogo con filtros
 
-    @Query(value = """
-    SELECT r.* FROM receta r
+    @Query("""
+    SELECT new es.safareyes.smartchef.dtos.DatosFiltradoReceta(
+        r.nombre,
+        r.raciones,
+        r.tiempo,
+        r.calorias,
+        r.eRecetaDificultad
+    )
+    FROM Receta r
     WHERE (:tiempoMax IS NULL OR r.tiempo <= :tiempoMax)
-      AND (:dificultadMin IS NULL OR r.dificultad >= :dificultadMin)
+      AND (:dificultadMin IS NULL OR CAST(r.eRecetaDificultad AS integer) >= :dificultadMin)
     ORDER BY r.nombre ASC
-    """, nativeQuery = true)
-    List<Receta> buscarConFiltros(
+    """)
+    List<DatosFiltradoReceta> buscarConFiltros(
             @Param("tiempoMax") Integer tiempoMax,
             @Param("dificultadMin") Integer dificultadMin
     );
