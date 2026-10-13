@@ -1,7 +1,7 @@
 package es.safareyes.smartchef;
 
-import es.safareyes.smartchef.dtos.DatosFiltradoReceta;
-import es.safareyes.smartchef.repositorios.IRecetaRepository;
+import es.safareyes.smartchef.modelos.Ingredientes;
+import es.safareyes.smartchef.repositorios.IIngredientesRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
@@ -11,20 +11,13 @@ import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class TestIngredientesFiltros {
+public class TestIngredientePublico {
 
     @Autowired
-    private IRecetaRepository repository;
+    private IIngredientesRepository repository;
 
     @Test
-    void
-    buscarporFiltros(){
-        List<DatosFiltradoReceta> tiempoMax=repository.buscarConFiltros(20, 1);
-    }
-
-
-
-
-
+    void obtenerIngredientesDisponibles() {
+        List<Ingredientes> ingredientes = repository.findAllByOrderByNombreAsc();  }
 
 }

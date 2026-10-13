@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class DatosIngrediente {
 
     private String nombre;
-    private EIngredientesTipoCantidad eIngredientesTipoCantidad;
+    private EIngredientesTipoCantidad tipoCantidad;
     private Integer calorias;
-    private Integer precio;
+    private Double precio;
 }

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+
 import java.util.List;
 
 @Repository
@@ -34,6 +35,7 @@ public interface IRecetaRepository extends JpaRepository<Receta, Integer> {
     );
 
     //Detalle receta con ingredientes
+
     @Query("""
     SELECT new es.safareyes.smartchef.dtos.DatosRecetaDetalle(
         r.id,

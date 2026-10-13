@@ -33,7 +33,7 @@ public class Ingredientes {
     private String nombre;
 
     //ENUM
-    @Enumerated
+    @Enumerated()
     @Column(name="tipo_cantidad")
     private EIngredientesTipoCantidad eIngredientesTipoCantidad;
 

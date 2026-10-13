@@ -10,11 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DatosReceta {
 
-    private String nombre;
-    private Integer raciones;
+    private String nombreReceta;
     private Integer tiempo;
+    private Double costeEstimado;
     private Integer calorias;
-    private String descripcion;
-    private ERecetaDificultad eRecetaDificultad;
+    private ERecetaDificultad dificultad;
+    private String preferenciaNombre;
+
 
 }

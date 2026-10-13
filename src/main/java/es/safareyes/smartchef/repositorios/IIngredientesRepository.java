@@ -10,22 +10,8 @@ import java.util.List;
 
 public interface IIngredientesRepository extends JpaRepository<Ingredientes, Integer> {
 
-    //Catálogo de ingredientes por usuario
+    //Catálogo de ingredientes disponibles (público)
 
-    @Query("""
-    SELECT DISTINCT new es.safareyes.smartchef.dtos.DatosIngrediente(
-        i.nombre,
-        i.eIngredientesTipoCantidad,
-        i.calorias,
-        i.precio
-    )
-    FROM Despensa d 
-    JOIN d.ingrediente i 
-    WHERE d.usuario.id = :idUsuario 
-    ORDER BY i.nombre ASC
-    """)
-    List<DatosIngrediente> obtenerIngredientesPorUsuario(@Param("idUsuario") Integer idUsuario);
-
-
+    List<Ingredientes> findAllByOrderByNombreAsc();
 
 }
