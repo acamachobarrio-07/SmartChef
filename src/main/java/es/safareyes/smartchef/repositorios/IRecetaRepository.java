@@ -1,9 +1,6 @@
 package es.safareyes.smartchef.repositorios;
 
-import es.safareyes.smartchef.dtos.DatosFiltradoReceta;
-import es.safareyes.smartchef.dtos.DatosReceta;
-import es.safareyes.smartchef.dtos.DatosRecetasPopulares;
-import es.safareyes.smartchef.dtos.InformeRecetas;
+import es.safareyes.smartchef.dtos.*;
 import es.safareyes.smartchef.modelos.ERecetaDificultad;
 import es.safareyes.smartchef.modelos.Receta;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -38,18 +35,31 @@ public interface IRecetaRepository extends JpaRepository<Receta, Integer> {
 
     //Detalle receta con ingredientes
     @Query("""
-    SELECT new es.safareyes.smartchef.dtos.DatosReceta(
+    SELECT new es.safareyes.smartchef.dtos.DatosRecetaDetalle(
+        r.id,
         r.nombre,
-        r.raciones,
-        r.tiempo,
         r.calorias,
+        r.tiempo,
+        r.eRecetaDificultad,
         r.descripcion,
-        r.eRecetaDificultad
+        listagg(
+            DISTINCT CONCAT(i.nombre, ' (', CAST(ir.cantidad AS String), ' ',
+                            CAST(i.eIngredientesTipoCantidad AS String), ')'),
+            ', '
+        ),
+        listagg(
+            DISTINCT CONCAT(CAST(p.numero AS String), '. ', p.descripcion),
+            ' | '
+        ) WITHIN GROUP (ORDER BY CONCAT(CAST(p.numero AS String), '. ', p.descripcion) ASC)
     )
     FROM Receta r
+    JOIN r.ingredientesReceta ir
+    JOIN ir.ingrediente i
+    LEFT JOIN r.pasos p
     WHERE r.id = :idReceta
+    GROUP BY r.id, r.nombre, r.calorias, r.tiempo, r.eRecetaDificultad, r.descripcion
     """)
-    List<DatosReceta> obtenerdetalleRecetaconIngredientes(@Param("idReceta") Integer idReceta);
+    List<DatosRecetaDetalle> obtenerDetalleRecetaConIngredientes(@Param("idReceta") Integer idReceta);
 
     //top 5 recetas mas cocinadas y mas guardadas
 

@@ -1,6 +1,7 @@
 package es.safareyes.smartchef;
 
 import es.safareyes.smartchef.dtos.DatosReceta;
+import es.safareyes.smartchef.dtos.DatosRecetaDetalle;
 import es.safareyes.smartchef.modelos.Receta;
 import es.safareyes.smartchef.repositorios.IRecetaRepository;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,6 @@ public class TestDetalleReceta {
 
     @Test
     void obtenerDetalleUnicoReceta() {
-        List<DatosReceta> receta = repository.obtenerdetalleRecetaconIngredientes(2);
+        List<DatosRecetaDetalle> receta = repository.obtenerDetalleRecetaConIngredientes(2);
     }
 }
